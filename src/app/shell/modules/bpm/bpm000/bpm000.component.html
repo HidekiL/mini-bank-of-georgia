@@ -1,0 +1,62 @@
+<div class="ui segments">
+    <div class="ui segment">
+        <h1>კლიენტის ძებნა</h1>
+    </div>
+    <div class="ui segment">
+        <div class="ui segment bordered">
+            <div class="ui form" [formGroup]="clientsSearchForm">
+                <div class="ui three column grid">
+                    <div class="column">
+                        <div class="field">
+                            <label>სახელი</label>
+                            <input type="text" formControlName="firstName">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label>გვარი</label>
+                            <input type="text" formControlName="lastName">
+                        </div>
+                    </div>
+                    <div class="column">
+                        <div class="field">
+                            <label>კლიენტის უნიკალური</label>
+                            <input type="text" formControlName="clientKey">
+                        </div>
+                    </div>
+                </div>
+                <div class="ui grid">
+                    <div class="column">
+                        <div class="field">
+                            <div class="ui right floated blue icon button" (click)="onClientSearch()">
+                                <i class="icon search"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <ng-container *ngIf="showClients">
+            <div class="table-header">
+                <span>კლიენტები</span>
+                <div class="ui right floated icon button">
+                    <i class="icon plus"></i>
+                </div>
+            </div>
+            <table>
+                <thead>
+                    <th>სახელი</th>
+                    <th>გვარი</th>
+                    <th>კლიენტის უნიკალური</th>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let client of clients; let i = index">
+                        <td>{{ client.firstName }}</td>
+                        <td>{{ client.lastName }}</td>
+                        <td>{{ client.clientKey }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </ng-container>
+    </div>
+</div>

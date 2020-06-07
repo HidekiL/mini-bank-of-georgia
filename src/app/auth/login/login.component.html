@@ -1,0 +1,33 @@
+<form class="ui form" [formGroup]="loginForm" (ngSubmit)="loginForm.valid ? onLoginSubmit() : ''">
+    <div class="field">
+        <div class="ui left icon input">
+            <i class="user icon"></i>
+            <input type="text" name="first-name" placeholder="მომხმარებელი" formControlName="user">
+        </div>
+        <ng-container *ngIf="get('user').invalid && get('user').touched">
+            <p class="error" *ngFor="let error of errors('user')">{{ error }}</p>
+        </ng-container>
+    </div>
+    <div class="field">
+        <div class="ui left icon input">
+            <i class="lock icon"></i>
+            <input type="password" name="last-name" placeholder="პაროლი" formControlName="password">
+        </div>
+        <ng-container *ngIf="get('password').invalid && get('password').touched">
+            <p class="error" *ngFor="let error of errors('password')">{{ error }}</p>
+        </ng-container>
+    </div>
+    <div class="field">
+        <div class="two fields">
+            <div class="field">
+                <a class="item" routerLink="/auth/register">რეგისტრაცია</a>
+            </div>
+            <div class="ui field icon">
+                <button class="ui basic right floated button text" id="button-login" type="submit">
+                    <i class="sign in alternate icon" id="login-icon"></i>
+                    <a class="item" href="/bpm/bpm000">შესვლა</a>
+                </button>
+            </div>
+        </div>
+    </div>
+</form>
