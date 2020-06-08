@@ -1,3 +1,3 @@
-<ng-container *ngIf="get('username').invalid && get('username').touched">
-    <p class="error" *ngFor="let error of errors('username')">{{ error }}</p>
+<ng-container *ngIf="control.invalid && control.touched">
+    <p class="error" *ngFor="let error of errors(control)">{{ error }}</p>
 </ng-container>
