@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, Output } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs';
@@ -8,6 +8,7 @@ import { AuthService } from 'src/app/shared/auth/auth.service';
 import { UserResponseData } from 'src/app/shared/response.model';
 import { LoaderService } from 'src/app/shared/loader/loader.service';
 import { AlertService } from 'src/app/shared/alert/alert.service';
+import { BgValidatorService } from 'src/app/validation-message/bg-validators.service';
 
 @Component({
   // tslint:disable-next-line: component-selector
@@ -24,7 +25,8 @@ export class RegisterComponent implements OnInit, OnDestroy {
     private router: Router,
     private route: ActivatedRoute,
     private loader: LoaderService,
-    private alert: AlertService
+    private alert: AlertService,
+    private validatorService: BgValidatorService
   ) { }
 
   ngOnInit(): void {
@@ -36,16 +38,24 @@ export class RegisterComponent implements OnInit, OnDestroy {
         password2: new FormControl(null, [Validators.required, Validators.minLength(2), Validators.maxLength(36)])
       }, Validators.passwordMatch)
     });
+
+    this.onFormChange(this.userForm);
   }
 
-  get(control: string) {
-    return this.userForm.get(control);
-  }
-
-  errors(controlName) {
-    return this.get(controlName)?.errors
-      ? Object.values(this.get(controlName).errors)
-      : [];
+  onFormChange(group: FormGroup): void {
+    Object.keys(group.controls).forEach((key: string) => {
+      const abstractControl = group.get(key);
+      if (abstractControl instanceof FormGroup) {
+        abstractControl.valueChanges.subscribe(val => {
+          this.validatorService.onFormChange(abstractControl);
+        });
+        this.onFormChange(abstractControl);
+      } else {
+        abstractControl.valueChanges.subscribe(val => {
+          this.validatorService.onFormChange(abstractControl);
+        });
+      }
+    });
   }
 
   onSubmit() {
@@ -53,7 +63,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
     this.registrSubscription = this.authService.registerUser(this.userForm.value).subscribe(
       (response: UserResponseData) => {
         if (response) {
-          console.log(response);
           // user was registered, show registration success message and navigate to login
           this.loader.isLoading = false;
           this.alert.showAlertMessage('თქვენ წარმატებით გაიარეთ რეგისტრაცია!', 'success');

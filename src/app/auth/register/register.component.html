@@ -4,18 +4,19 @@
             <i class="address card icon"></i>
             <input type="text" placeholder="სახელი" formControlName="name">
         </div>
-        <ng-container *ngIf="get('name').invalid && get('name').touched">
+        <bg-validation-message></bg-validation-message>
+        <!-- <ng-container *ngIf="get('name').invalid && get('name').touched">
             <p class="error" *ngFor="let error of errors('name')">{{ error }}</p>
-        </ng-container>
+        </ng-container> -->
     </div>
     <div class="field">
         <div class="ui left icon input">
             <i class="user icon"></i>
             <input type="text" name="username" placeholder="მომხმარებელი" formControlName="user">
         </div>
-        <ng-container *ngIf="get('user').invalid && get('user').touched">
+        <!-- <ng-container *ngIf="get('user').invalid && get('user').touched">
             <p class="error" *ngFor="let error of errors('user')">{{ error }}</p>
-        </ng-container>
+        </ng-container> -->
     </div>
     <div formGroupName="password" style="margin-bottom: 15px;">
         <div class="field">
@@ -23,23 +24,23 @@
                 <i class="lock icon"></i>
                 <input type="password" name="password1" placeholder="პაროლი" formControlName="password1">
             </div>
-            <ng-container *ngIf="get('password.password1').invalid && get('password.password1').touched">
+            <!-- <ng-container *ngIf="get('password.password1').invalid && get('password.password1').touched">
                 <p class="error" *ngFor="let error of errors('password.password1')">{{ error }}</p>
-            </ng-container>
+            </ng-container> -->
         </div>
         <div class="field">
             <div class="ui left icon input">
                 <i class="lock icon"></i>
                 <input type="password" name="password2" placeholder="განმეორებითი პაროლი" formControlName="password2">
             </div>
-            <ng-container *ngIf="get('password.password2').invalid && get('password.password2').touched">
+            <!-- <ng-container *ngIf="get('password.password2').invalid && get('password.password2').touched">
                 <p class="error" *ngFor="let error of errors('password.password2')">{{ error }}</p>
-            </ng-container>
+            </ng-container> -->
         </div>
-        <ng-container
+        <!-- <ng-container
             *ngIf="get('password').invalid && get('password.password1').touched && get('password.password2').touched">
             <p class="error" *ngFor="let error of errors('password')">{{ error }}</p>
-        </ng-container>
+        </ng-container> -->
     </div>
     <div class="field">
         <div class="two fields">
