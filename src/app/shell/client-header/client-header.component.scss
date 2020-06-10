@@ -1,0 +1,64 @@
+.container {
+  display: flex;
+  justify-content: space-between;
+  border: 1px solid grey;
+
+  .left-profile {
+    display: flex;
+
+    .info {
+      display: flex;
+      justify-content: space-between;
+      flex-direction: column;
+
+      span {
+        font-weight: bold;
+        font-size: medium;
+      }
+    }
+
+    .image {
+      margin-right: 30px;
+
+      img {
+        max-height: 100px;
+      }
+    }
+  } 
+  
+  .right-profile {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    margin-right: 30px;
+    min-width: 350px;
+
+    .activity-cont {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 50px;
+
+      .activity {
+        display: flex;
+        justify-content: space-between;
+
+        .act, .plus {
+          width: 80px;
+          display: flex;
+          justify-content: flex-end;
+        }
+      }
+    }
+    
+    .btn-logout {
+      display: flex;
+      justify-content: flex-end;
+      
+    }
+  }
+}
+
+.mg-bottom {
+  margin-bottom: 15px !important;
+}

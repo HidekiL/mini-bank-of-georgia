@@ -14,6 +14,7 @@ import { ClientService } from 'src/app/shared/clients/clients.service';
 })
 export class AccountsComponent implements OnInit {
   accounts: AccountsResponseData[];
+  showAccounts = true;
 
   constructor(
     private router: Router,
@@ -37,6 +38,7 @@ export class AccountsComponent implements OnInit {
   }
 
   onAccountAdd() {
+    this.showAccounts = false;
     this.router.navigate(['/krn/accounts/create']);
   }
 
