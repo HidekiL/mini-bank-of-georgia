@@ -5,20 +5,24 @@ export class Validators extends NGValidators {
     return (control: AbstractControl) =>
       super.minLength(length)(control)
         ? { minLength: 'ველის სიგრძე არ შეიძლება იყოს ' + length + '-ზე ნაკლები' }
-        : undefined;
+        : null;
   }
 
   static maxLength(length: number) {
     return (control: AbstractControl) =>
       super.maxLength(length)(control)
         ? { maxLength: 'ველის სიგრძე არ შეიძლება იყოს ' + length + '-ზე მეტი' }
-        : undefined;
+        : null;
   }
 
   static required(control: AbstractControl) {
     return super.required(control)
       ? { required: 'ველი აუცილებელია' }
-      : undefined;
+      : null;
+  }
+
+  static positive(control: AbstractControl) {
+    return control.value >= 0 || control.value === null ? null : { positiveNum: 'გთხოვთ შეიყვანოთ დადებითი რიცხვი' };
   }
 
   static passwordMatch(controls) {

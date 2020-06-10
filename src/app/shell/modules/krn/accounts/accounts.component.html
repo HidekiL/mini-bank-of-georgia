@@ -1,3 +1,4 @@
+<bg-krnicp></bg-krnicp>
 <div class="ui segments">
   <div class="ui segment">
     <h1>ანგარიშები</h1>
@@ -5,7 +6,7 @@
   <div class="ui segment">
     <div class="table-header">
       <span>ანგარიშები</span>
-      <div class="ui right floated icon button">
+      <div class="ui right floated icon button" (click)="onAccountAdd()">
         <i class="icon plus"></i>
       </div>
     </div>
@@ -17,60 +18,19 @@
         <th></th>
       </thead>
       <tbody>
-        <tr>
+        <tr *ngFor="let account of accounts; let i = index">
           <td style="width: 25%;">
-            <p class="ui float-left">ტესტ1</p>
+            <p class="ui float-left">{{ account.clientFirstName + ' ' + account.clientLastName }}</p>
           </td>
           <td style="width: 35%;">
-            <p class="ui float-left">ტესტ1</p>
+            <p class="ui float-left">{{ account.accountName }}</p>
           </td>
           <td style="width: 20%;">
-            <p class="ui float-right">1</p>
+            <p class="ui float-right">{{ account.amount }}</p>
           </td>
           <td style="width: 20%;">
-            <i class="ui float-right icon trash"></i>
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 25%;">
-            <p class="ui float-left">ტესტ1</p>
-          </td>
-          <td style="width: 35%;">
-            <p class="ui float-left">ტესტ1</p>
-          </td>
-          <td style="width: 20%;">
-            <p class="ui float-right">1</p>
-          </td>
-          <td style="width: 20%;">
-            <i class="ui float-right icon trash"></i>
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 25%;">
-            <p class="ui float-left">ტესტ1</p>
-          </td>
-          <td style="width: 35%;">
-            <p class="ui float-left">ტესტ1</p>
-          </td>
-          <td style="width: 20%;">
-            <p class="ui float-right">1</p>
-          </td>
-          <td style="width: 20%;">
-            <i class="ui float-right icon trash"></i>
-          </td>
-        </tr>
-        <tr>
-          <td style="width: 25%;">
-            <p class="ui float-left">ტესტ1</p>
-          </td>
-          <td style="width: 35%;">
-            <p class="ui float-left">ტესტ1</p>
-          </td>
-          <td style="width: 20%;">
-            <p class="ui float-right">1</p>
-          </td>
-          <td style="width: 20%;">
-            <i class="ui float-right icon trash"></i>
+            <i class="ui float-right icon trash" (click)="onDeleteAccount(i, account.accountKey, account.amount)">
+            </i>
           </td>
         </tr>
       </tbody>

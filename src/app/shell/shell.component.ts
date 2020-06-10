@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
+  // tslint:disable-next-line: component-selector
   selector: 'bg-shell',
   templateUrl: './shell.component.html',
   styleUrls: ['./shell.component.scss']

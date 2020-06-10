@@ -3,18 +3,18 @@
     <h1>კლიენტის რეგისტრაცია</h1>
   </div>
   <div class="ui segment">
-    <form class="ui form bordered">
+    <form class="ui form bordered" [formGroup]="clientForm" (ngSubmit)="clientForm.valid ? onSubmit() : ''">
       <div class="field" style="width: 60%;">
         <label>სახელი</label>
-        <input type="text">
+        <input type="text" formControlName="firstName">
       </div>
       <div class="field" style="width: 60%;">
         <label>გვარი</label>
-        <input type="text">
+        <input type="text" formControlName="lastName">
       </div>
       <div class="field" style="width: 60%;">
         <label>Plus ქულები</label>
-        <input type="text">
+        <input type="number" formControlName="plus">
       </div>
       <button type="submit" class="icon ui blue button" style="margin-top: 30px;">
           <i class="icon save"></i>

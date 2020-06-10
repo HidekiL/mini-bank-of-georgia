@@ -2,40 +2,42 @@
   <div class="ui segment container">
     <div class="left-profile">
       <div class="image">
-        <img src="https://www.ifs.org.uk/inequality/wp-content/uploads/2020/04/Are-some-ethnic-groups-more-vulnerable-to-COVID-19-than-others-IFS-Briefing-Note.jpg" alt="">
+        <img
+          [src]="client.image"
+          alt="">
       </div>
       <div class="info">
-        <span>test 4 test</span>
-        <p>კლიენტის უნიკალური: <span>14</span></p>
+        <span>{{ client.firstName + ' ' + client.lastName }}</span>
+        <p>კლიენტის უნიკალური: <span>{{ client.clientKey }}</span></p>
       </div>
     </div>
     <div class="right-profile">
       <div class="activity-cont">
-        <div class="test">
-          <div class="test2">
+        <div class="activity">
+          <div class="act">
             <span>აქტივები:</span>
           </div>
           <div>
-            <span>1000 GEL</span>
+            <span>{{ sumAmount | async }}</span>
           </div>
         </div>
-        <div class="test">
-          <div class="test2">
+        <div class="activity">
+          <div class="plus">
             <span>plus:</span>
           </div>
           <div>
-            <span>500</span>
+            <span>{{ client.plusPoints }}</span>
           </div>
         </div>
       </div>
       <div class="btn-logout">
-        <button class="button ui red">გასვლა</button>
+        <button class="button ui red" (click)="onClientLogout()">გასვლა</button>
       </div>
     </div>
   </div>
   <div class="ui three item stackable tabs menu" style="margin: 0rem">
-    <a class="item active" data-tab="definition">მთავარი</a>
-    <a class="item" data-tab="examples">ანგარიშები</a>
-    <a class="item" data-tab="usage">ოპერაციები</a>
+    <a class="item active" data-tab="definition" routerLink="/krn/krnicp">მთავარი</a>
+    <a class="item" data-tab="examples" routerLink="/krn/accounts">ანგარიშები</a>
+    <a class="item" data-tab="usage" routerLink="/krn/operations">ოპერაციები</a>
   </div>
 </div>

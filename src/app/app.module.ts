@@ -26,6 +26,8 @@ import { PopupDirective } from './shared/popup.directive';
 import { UrlInterceptor } from './shared/url-interceptor.service';
 import { LoaderComponent } from './shared/loader/loader.component';
 import { AlertComponent } from './shared/alert/alert.component';
+import { AuthInterceptor } from './shared/auth/auth-interceptor.service';
+import { ClientHeaderComponent } from './shell/client-header/client-header.component';
 
 @NgModule({
   declarations: [
@@ -49,7 +51,8 @@ import { AlertComponent } from './shared/alert/alert.component';
     Pmd311Component,
     PopupDirective,
     LoaderComponent,
-    AlertComponent
+    AlertComponent,
+    ClientHeaderComponent
   ],
   imports: [
     BrowserModule,
@@ -59,6 +62,11 @@ import { AlertComponent } from './shared/alert/alert.component';
     HttpClientModule
   ],
   providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
+      multi: true
+    },
     {
       provide: HTTP_INTERCEPTORS,
       useClass: UrlInterceptor,

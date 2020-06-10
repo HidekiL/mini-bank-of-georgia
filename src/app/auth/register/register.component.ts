@@ -1,7 +1,6 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { FormGroup, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Subscription } from 'rxjs';
 
 import { Validators } from 'src/app/validation-message/bg-validators';
 import { AuthService } from 'src/app/shared/auth/auth.service';
@@ -15,15 +14,13 @@ import { AlertService } from 'src/app/shared/alert/alert.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
   userForm: FormGroup;
-  registrSubscription: Subscription;
 
   constructor(
     private authService: AuthService,
     private router: Router,
     private route: ActivatedRoute,
-    private loader: LoaderService,
     private alert: AlertService
   ) { }
 
@@ -49,29 +46,22 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   onSubmit() {
-    this.loader.isLoading = true;
-    this.registrSubscription = this.authService.registerUser(this.userForm.value).subscribe(
+    const name = this.get('name').value;
+    const username = this.get('user').value;
+    const password = this.get('password.password1').value;
+
+    this.authService.registerUser(name, username, password).subscribe(
       (response: UserResponseData) => {
         if (response) {
-          console.log(response);
           // user was registered, show registration success message and navigate to login
-          this.loader.isLoading = false;
           this.alert.showAlertMessage('თქვენ წარმატებით გაიარეთ რეგისტრაცია!', 'success');
           this.userForm.reset();
           this.router.navigate(['..'], { relativeTo: this.route });
         }
       }, error => {
         // show error message
-        this.loader.isLoading = false;
         this.alert.showAlertMessage(error.error, 'error');
       }
     );
   }
-
-  ngOnDestroy() {
-    if (this.registrSubscription) {
-      this.registrSubscription.unsubscribe();
-    }
-  }
-
 }

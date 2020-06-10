@@ -39,7 +39,7 @@
         <ng-container *ngIf="showClients">
             <div class="table-header">
                 <span>კლიენტები</span>
-                <div class="ui right floated icon button">
+                <div class="ui right floated icon button" (click)="onAddClient()">
                     <i class="icon plus"></i>
                 </div>
             </div>
@@ -49,8 +49,8 @@
                     <th>გვარი</th>
                     <th>კლიენტის უნიკალური</th>
                 </thead>
-                <tbody>
-                    <tr *ngFor="let client of clients; let i = index">
+                <tbody class="clientRow">
+                    <tr  *ngFor="let client of clients; let i = index" (click)="onClickClient(i)">
                         <td>{{ client.firstName }}</td>
                         <td>{{ client.lastName }}</td>
                         <td>{{ client.clientKey }}</td>

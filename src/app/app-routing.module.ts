@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+
 import { ShellComponent } from './shell/shell.component';
 import { RegisterComponent } from './auth/register/register.component';
 import { LoginComponent } from './auth/login/login.component';
@@ -13,6 +14,7 @@ import { CreateAccountComponent } from './shell/modules/krn/accounts/create-acco
 import { OperationsComponent } from './shell/modules/krn/operations/operations.component';
 import { Pmd311Component } from './shell/modules/pmd/pmd311/pmd311.component';
 import { BpmComponent } from './shell/modules/bpm/bpm.component';
+import { AuthGuard } from './shared/auth/auth.guard';
 
 const routes: Routes = [
   {
@@ -31,7 +33,8 @@ const routes: Routes = [
             path: 'bpm001',
             component: Bpm001Component
           }
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'krn',
@@ -55,11 +58,13 @@ const routes: Routes = [
             path: 'operations',
             component: OperationsComponent
           }
-        ]
+        ],
+        canActivate: [AuthGuard]
       },
       {
         path: 'pmd/pmd311',
-        component: Pmd311Component
+        component: Pmd311Component,
+        canActivate: [AuthGuard]
       },
     ]
   },

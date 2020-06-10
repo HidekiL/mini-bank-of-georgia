@@ -1,4 +1,4 @@
-<form class="ui form" [formGroup]="loginForm" (ngSubmit)="loginForm.valid ? onLoginSubmit() : ''">
+<form class="ui form" [formGroup]="loginForm" (ngSubmit)="onLoginSubmit()">
     <div class="field">
         <div class="ui left icon input">
             <i class="user icon"></i>
@@ -25,7 +25,7 @@
             <div class="ui field icon">
                 <button class="ui basic right floated button text" id="button-login" type="submit">
                     <i class="sign in alternate icon" id="login-icon"></i>
-                    <a class="item" href="/bpm/bpm000">შესვლა</a>
+                    <a class="item">შესვლა</a>
                 </button>
             </div>
         </div>
